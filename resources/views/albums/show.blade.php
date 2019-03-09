@@ -17,12 +17,15 @@
 					float:left;
 					background-color:lightblue;
  					">
-			{{ $i }}
 			
 			
+	<form>
+	{{ $i }}
 		<input class="btn btn-primary" type="button" value="+" onclick="plusFunction({{$i}})">
 		<input class="btn btn-primary" type="button" value="-" onclick="minusFunction({{$i}})">
-			<span class="{{ $i }}">0</span>
+		<span class="{{ $i }}">0</span>
+	</form>
+			
 		</div>
           @endfor
         </div>
