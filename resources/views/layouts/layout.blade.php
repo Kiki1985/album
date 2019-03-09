@@ -14,6 +14,7 @@
 
     <!-- Custom styles for this template -->
     <link href="css/album.css" rel="stylesheet">
+    <script src="script.js"></script>
   </head>
 
   <body class="text-center">
