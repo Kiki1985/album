@@ -41,8 +41,8 @@
         		var num = document.getElementsByClassName(broj)[0].innerHTML;
 				num--;
 				if(num<0){
-                num=0;  
-    }
+                	num=0;  
+    			}
 				document.getElementsByClassName(broj)[0].innerHTML = num;
         	}
 
