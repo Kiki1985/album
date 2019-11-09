@@ -1,37 +1,25 @@
-@extends('layouts/layout')
-
+@extends('layout')
 @section('content')
+<h1>Albums</h1>
+<p>User {{Auth::user()->name}}</p>
+<form method="POST" action="/albums">
+@csrf
+	<input type="text" name="name" placeholder="The Album Name">
+	<input type="text" name="number_of_stickers" placeholder="Number Of Stickers">
+	<button>Submit</button>
+</form>
 
-
-
-	<form method="POST" action="/albums">
- 	{{ csrf_field() }}
-
-  
- 		<br>
-		
-		  <input type="text" name="name" placeholder="The Album Name">
-
-		  <input type="text" name="number_of_stickers" placeholder="Number Of Stickers">
-
-		  <input type="submit" value="Submit">
-
-
-	</form> 
-	<br>
-
-	<ul class="list-group list-group-flush">
-
-	@foreach($albums as $album)
-		<li class="list-group-item"><a href="/albums/{{$album->id}}">{{$album->name}} - <strong> {{$album->number_of_stickers}}</strong></a></li>
-
-	@endforeach
-
-	</ul><br><br>
-
-	
-	
-
-	
-
+<table>
+<tr>
+	<th>The album name</th>
+    <th>Number of stickers</th>
+</tr>
+<a href="/logout"><button>Logout</button></a>
+@foreach($albums as $album)
+<tr>
+	<td><a href="/albums/{{$album->id}}">{{$album->name}}</a></td>
+	<td>{{$album->number_of_stickers}}</td>
+</tr>
+@endforeach
+</table>
 @endsection

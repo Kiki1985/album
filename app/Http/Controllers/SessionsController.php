@@ -6,33 +6,23 @@ use Illuminate\Http\Request;
 
 class SessionsController extends Controller
 {
-    public function index()
+    public function create()
     {
-    	return view('index');
+        return view('sessions.create');
     }
-
-    
-
-
-    public function create(){
-    	return view('sessions/create');
-    }
-
 
     public function store(){
-    	if(! auth()->attempt(request(['name', 'password'])))
-    	{
-    		return back()->withErrors([
-    			'message' => 'Please check your credentials and try again.'
-    		]);
-    	}return redirect('/albums');
+        if(! auth()->attempt(request(['name', 'password'])))
+        {
+            return back()->withErrors([
+                'message' => 'Please check your credentials and try again.'
+            ]);
+        }return redirect('/albums');
     }
 
-
     public function destroy(){
-    	auth()->logout();
+        auth()->logout();
 
-    	return redirect('/');
-    	
+        return redirect('/');
     }
 }
