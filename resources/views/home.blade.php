@@ -1,7 +1,9 @@
 @extends('layout')
 @section('content')
-<h1>Albums</h1>
-<p>User {{Auth::user()->name}}</p>
+<div style="float: left"><h2>Albums</h2></div>
+<div style="float: right"><p>User {{Auth::user()->name}}</p></div>
+
+<div style="clear: both;">
 <form method="POST" action="/albums">
 @csrf
 	<input type="text" name="name" placeholder="The Album Name">
@@ -22,4 +24,5 @@
 </tr>
 @endforeach
 </table>
+</div>
 @endsection
