@@ -21,7 +21,7 @@
 	if(operation === "-") stickerNumber--;
 	if(stickerNumber < 0) stickerNumber = 0;
 	$(this).closest("div").find('.stickerNumber').text(stickerNumber);
-	$.get('/albums/{album}/stickers?album_id={{$album->id}}&sticker_id='+stickerId+'&sticker_number='+stickerNumber+'');
+	$.get('/albums/{{$album->id}}/stickers?album_id={{$album->id}}&sticker_id='+stickerId+'&sticker_number='+stickerNumber+'');
 	});
 </script>
 @endsection
