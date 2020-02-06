@@ -13,11 +13,6 @@
 </div>
 @endfor
 <script type="text/javascript">
-$.ajaxSetup({
-  headers: {
-    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-  }
-});
 	$(".operation").click(function(){
 	stickerId = stickerNumber = $(this).closest("div").find('.stickerId').text();
 	operation = $(this).text();
