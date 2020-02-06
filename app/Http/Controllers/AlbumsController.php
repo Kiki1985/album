@@ -14,8 +14,9 @@ class AlbumsController extends Controller
         $album = Album::find($id);
         $stickerNumber = array();
         for ($i = 1; $i <= $album->number_of_stickers; $i++){
-            if(Sticker::where('album_id', $album->id)->where('sticker_id', $i)->exists()){
-            array_push($stickerNumber, Sticker::where('album_id', $album->id)->where('sticker_id', $i)->value('sticker_number'));
+        $sticker = Sticker::where([['album_id', '=',  $album->id], ['sticker_id', '=', $i]]);
+            if($sticker->exists()){
+            array_push($stickerNumber, $sticker->value('sticker_number'));
             }else{
                array_push($stickerNumber, 0);
             }
