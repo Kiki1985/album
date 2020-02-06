@@ -5,44 +5,27 @@
 <a href="/logout"><button>Logout</button></a></div>
 <hr>
 @for ($i = 1; $i <= $album->number_of_stickers; $i++)
-<div style="border: 1px solid LightBlue; margin: 20px ; padding: 20px 20px; width: 90px">
-<div>{{$i}}
-<button id="{{$i.'minus'}}">-</button>
-<button id="{{$i.'plus'}}">+</button>
-<span id="{{$i}}">
-{{$stickerNumber[$i-1]}}
-</span></div></div>
-<script type="text/javascript">
-document.getElementById("{{$i.'plus'}}").addEventListener("click", function() {
-  insert({{$i}}, this);
-  });
-document.getElementById("{{$i.'minus'}}").addEventListener("click", function() {
-  insert({{$i}}, this);
-});
-</script>
+<div style="border: 1px solid LightBlue; margin: 20px ; padding: 20px 20px; width: 100px">
+	<div class="stickerId" style="float: left; margin-right: 12px">{{$i}}</div>
+	<button class="operation">-</button>
+	<button class="operation">+</button>
+	<div class="stickerNumber" style="float: right;" id="{{$i}}">{{$stickerNumber[$i-1]}}</div>
+</div>
 @endfor
 <script type="text/javascript">
-var xhr = new XMLHttpRequest();
-function insert(sticker_id, obj){
-	var btn = obj.innerHTML;
-	var sticker_number = document.getElementById(sticker_id).innerHTML;
-	if(btn === '+'){
-		sticker_number++;
-		document.getElementById(sticker_id).innerHTML=(sticker_number);
-		
-	}else{
-		sticker_number--;
-		if(sticker_number<0){
-    		sticker_number=0;  
-    	}
-    	document.getElementById(sticker_id).innerHTML=(sticker_number);
-	}
-	xhr.open('GET','/albums/{album}/stickers?album_id={{$album->id}}&sticker_id='+sticker_id+'&sticker_number='+sticker_number+'', true);
-	xhr.send(); 
-	xhr.onreadystatechange = function(){
-		if(xhr.readyState === 4){
-		}
-	}
-}
+$.ajaxSetup({
+  headers: {
+    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+  }
+});
+	$(".operation").click(function(){
+	stickerId = stickerNumber = $(this).closest("div").find('.stickerId').text();
+	operation = $(this).text();
+	stickerNumber = $(this).closest("div").find('.stickerNumber').text();
+	if(operation === "+") stickerNumber++;
+	if(operation === "-") stickerNumber--;
+	$(this).closest("div").find('.stickerNumber').text(stickerNumber);
+	$.get('/albums/{album}/stickers?album_id={{$album->id}}&sticker_id='+stickerId+'&sticker_number='+stickerNumber+'');
+	});
 </script>
 @endsection

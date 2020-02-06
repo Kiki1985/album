@@ -7,7 +7,7 @@ class AlbumsController extends Controller
 {
     public function index(){
         $albums = Album::where('user_id', '=', auth()->user()->id)->get();
-            return view('home', compact('albums'));
+        return view('home', compact('albums'));
     }
 
     public function show($id){
@@ -16,12 +16,12 @@ class AlbumsController extends Controller
         for ($i = 1; $i <= $album->number_of_stickers; $i++){
         $sticker = Sticker::where([['album_id', '=',  $album->id], ['sticker_id', '=', $i]]);
             if($sticker->exists()){
-            array_push($stickerNumber, $sticker->value('sticker_number'));
+                array_push($stickerNumber, $sticker->value('sticker_number'));
             }else{
                array_push($stickerNumber, 0);
             }
         }   
-            return view('albums.show', compact('album','stickerNumber'));
+        return view('albums.show', compact('album','stickerNumber'));
     }
 
     public function store(){
@@ -30,6 +30,6 @@ class AlbumsController extends Controller
             'number_of_stickers' => request('number_of_stickers'),
             'user_id' => auth()->user()->id
         ]);
-            return back();
+        return back();
     }
 }
