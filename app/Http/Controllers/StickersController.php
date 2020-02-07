@@ -10,8 +10,7 @@ class StickersController extends Controller
     			$sticker->where('duplicates', '>', 0);
     			$sticker->decrement('duplicates');
     	}
-
-    	if(request('operation') == '+'){
+		if(request('operation') == '+'){
     			$sticker->increment('duplicates');
 		}
 		return response();
