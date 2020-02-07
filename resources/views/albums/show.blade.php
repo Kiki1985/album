@@ -9,7 +9,9 @@
 	<div class="stickerId" style="float: left; margin-right: 20px">{{$i}}</div>
 	<button class="operation">-</button>
 	<button class="operation">+</button>
+	
 	<div class="duplicates" style="float: right;" id="{{$i}}">{{$duplicates[$i-1]}}</div>
+	
 </div>
 @endfor
 <script type="text/javascript">
@@ -26,7 +28,7 @@ albumId = {{$album->id}};
 		$.ajax({
 			url: '/albums/{{$album->id}}/stickers',
 			type: 'post',
-			data: {_token:CSRFtoken,albumId: albumId, stickerId: stickerId, duplicates:duplicates},
+			data: {_token:CSRFtoken,albumId: albumId, stickerId: stickerId, operation:operation},
 		});
 	});
 
