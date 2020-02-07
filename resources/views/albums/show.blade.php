@@ -13,9 +13,8 @@
 </div>
 @endfor
 <script type="text/javascript">
-albumId = {{$album->id}};
-
 var CSRFtoken = $('meta[name="csrf-token"]').attr('content');
+albumId = {{$album->id}};
 	$(".operation").click(function(){
 	stickerId  = $(this).closest("div").find('.stickerId').text();
 	operation = $(this).text();
