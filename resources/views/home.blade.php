@@ -7,7 +7,7 @@
 <form method="POST" action="/albums">
 @csrf
 	<input type="text" name="name" placeholder="The Album Name">
-	<input type="text" name="stickers" placeholder="Number Of Stickers">
+	<input type="text" name="numStickers" placeholder="Number Of Stickers">
 	<button>Submit</button>
 </form>
 
@@ -20,7 +20,7 @@
 @foreach($albums as $album)
 <tr>
 	<td><a href="/albums/{{$album->id}}">{{$album->name}}</a></td>
-	<td>{{$album->stickers}}</td>
+	<td>{{$album->numStickers}}</td>
 </tr>
 @endforeach
 </table>

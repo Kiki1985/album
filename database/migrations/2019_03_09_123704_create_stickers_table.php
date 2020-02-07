@@ -15,8 +15,8 @@ class CreateStickersTable extends Migration
     {
         Schema::create('stickers', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('albumId');
-            $table->integer('stickerId');
+            $table->integer('album_id');
+            $table->integer('sticker_id');
             $table->integer('duplicates');
         });
     }

@@ -1,19 +1,25 @@
 @extends('layout')
 @section('content')
-<p><b><i>{{$album->name}}</i></b> Number of stickers: {{$album->stickers}}<span style="float: right">User {{Auth::user()->name}}</span></p>
+<p><b><i>{{$album->name}}</i></b> Number of stickers: {{$album->numStickers}}<span style="float: right">User {{Auth::user()->name}}</span></p>
 <div><a href="/albums"><button>Back</button></a>
 <a href="/logout"><button>Logout</button></a></div>
 <hr>
-@for ($i = 1; $i <= $album->stickers; $i++)
+@foreach($album->stickers as $sticker)
+
 <div style="border: 1px solid LightBlue; margin: 20px ; padding: 20px 20px; width: 150px">
-	<div class="stickerId" style="float: left; margin-right: 20px">{{$i}}</div>
+	<div class="stickerId" style="float: left; margin-right: 20px">{{$sticker->sticker_id}}</div>
 	<button class="operation">-</button>
 	<button class="operation">+</button>
 	
-	<div class="duplicates" style="float: right;" id="{{$i}}">{{$duplicates[$i-1]}}</div>
+	<div class="duplicates" style="float: right;" id="{{$sticker->id}}">{{$sticker->duplicates}}</div>
+	
 	
 </div>
-@endfor
+
+@endforeach
+
+	
+
 <script type="text/javascript">
 var CSRFtoken = $('meta[name="csrf-token"]').attr('content');
 albumId = {{$album->id}};
