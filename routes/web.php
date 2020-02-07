@@ -13,6 +13,6 @@ Route::get('/logout', 'SessionsController@destroy');
 Route::get('/albums', 'AlbumsController@index');
 Route::post('/albums', 'AlbumsController@store');
 Route::get('/albums/{album}', 'AlbumsController@show');
-Route::get('/albums/{album}/stickers', 'StickersController@store');
+Route::post('/albums/{album}/stickers', 'StickersController@store');
 
 

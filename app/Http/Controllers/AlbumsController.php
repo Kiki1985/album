@@ -6,29 +6,29 @@ use App\Sticker;
 class AlbumsController extends Controller
 {
     public function index(){
-        $albums = Album::where('user_id', '=', auth()->user()->id)->get();
+        $albums = Album::where('userId', '=', auth()->user()->id)->get();
         return view('home', compact('albums'));
     }
 
     public function show($id){
         $album = Album::find($id);
-        $stickerNumber = array();
-        for ($i = 1; $i <= $album->number_of_stickers; $i++){
-        $sticker = Sticker::where([['album_id', '=',  $album->id], ['sticker_id', '=', $i]]);
+        $duplicates = array();
+        for ($i = 1; $i <= $album->stickers; $i++){
+        $sticker = Sticker::where([['albumId', '=',  $album->id], ['stickerId', '=', $i]]);
             if($sticker->exists()){
-                array_push($stickerNumber, $sticker->value('sticker_number'));
+                array_push($duplicates, $sticker->value('duplicates'));
             }else{
-               array_push($stickerNumber, 0);
+               array_push($duplicates, 0);
             }
         }   
-        return view('albums.show', compact('album','stickerNumber'));
+        return view('albums.show', compact('album','duplicates'));
     }
 
     public function store(){
         Album::create([
             'name' => request('name'),
-            'number_of_stickers' => request('number_of_stickers'),
-            'user_id' => auth()->user()->id
+            'stickers' => request('stickers'),
+            'userId' => auth()->user()->id
         ]);
         return back();
     }
