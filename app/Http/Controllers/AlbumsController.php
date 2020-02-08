@@ -23,7 +23,11 @@ class AlbumsController extends Controller
         return view('albums.show', compact('album'));
     }
 
-    public function store(){
+    public function store(Album $album){
+        $this->validate(request(),[
+            'name' => 'required',
+            'numStickers' => 'required'
+        ]);
         Album::create([
             'name' => request('name'),
             'numStickers' => request('numStickers'),

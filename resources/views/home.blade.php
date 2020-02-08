@@ -6,8 +6,8 @@
 <div style="clear: both;">
 <form method="POST" action="/albums">
 @csrf
-	<input type="text" name="name" placeholder="The Album Name">
-	<input type="text" name="numStickers" placeholder="Number Of Stickers">
+	<input type="text" name="name" placeholder="The Album Name" required>
+	<input type="text" name="numStickers" placeholder="Number Of Stickers" required>
 	<button>Submit</button>
 </form>
 
