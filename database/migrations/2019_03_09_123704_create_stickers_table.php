@@ -17,7 +17,7 @@ class CreateStickersTable extends Migration
             $table->increments('id');
             $table->integer('album_id');
             $table->integer('sticker_id');
-            $table->integer('duplicates');
+            $table->integer('duplicates')->default(0);
         });
     }
 

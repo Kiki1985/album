@@ -10,16 +10,13 @@ class AlbumsController extends Controller
         return view('home', compact('albums'));
     }
 
-    public function show($id){
-        $album = Album::find($id);
-       
+    public function show(Album $album){
         for ($i = 1; $i <= $album->numStickers; $i++){
         $sticker = Sticker::where([['album_id', '=',  $album->id], ['sticker_id', '=', $i]]);
             if(!($sticker->exists())){
                Sticker::create([
                 'album_id' => $album->id,
-                'sticker_id' => $i,
-                'duplicates' => 0
+                'sticker_id' => $i
                ]);
             }
         }   
