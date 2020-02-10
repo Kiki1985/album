@@ -14,10 +14,7 @@ class AlbumsController extends Controller
         for ($i = 1; $i <= $album->numStickers; $i++){
         $sticker = Sticker::where([['album_id', '=',  $album->id], ['sticker_id', '=', $i]]);
             if(!($sticker->exists())){
-               Sticker::create([
-                'album_id' => $album->id,
-                'sticker_id' => $i
-               ]);
+                $album->addSticker($i);
             }
         }   
         return view('albums.show', compact('album'));

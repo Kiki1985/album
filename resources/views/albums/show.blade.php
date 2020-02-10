@@ -1,9 +1,11 @@
 @extends('layout')
 @section('content')
 <p><b><i>{{$album->name}}</i></b> Number of stickers: {{$album->numStickers}}<span style="float: right">User {{Auth::user()->name}}</span></p>
-<div><a href="/albums"><button>Back</button></a>
-<a href="/logout"><button>Logout</button></a></div>
-<hr>
+<div id="bn" style="float: right; margin-bottom: 10px">
+<a href="/albums"><button>Back</button></a>
+<a href="/logout"><button>Logout</button></a>
+</div>
+<hr style="clear: both;">
 @foreach($album->stickers as $sticker)
 <div style="border: 1px solid LightBlue; margin: 20px ; padding: 20px 20px; width: 150px">
 	<div class="stickerId" style="float: left; margin-right: 20px">{{$sticker->sticker_id}}</div>
@@ -21,7 +23,7 @@ albumId = {{$album->id}};
 	duplicates = $(this).closest("div").find('.duplicates').text();
 	if(operation === "+") duplicates++;
 	if(operation === "-") duplicates--;
-	if(duplicates < 0) duplicates = 0;
+	if(duplicates < 1) duplicates = 1;
 	$(this).closest("div").find('.duplicates').text(duplicates);
 		$.ajax({
 			url: '/albums/{{$album->id}}/stickers',
@@ -29,5 +31,15 @@ albumId = {{$album->id}};
 			data: {_token:CSRFtoken,albumId: albumId, stickerId: stickerId, operation:operation},
 		});
 	});
+
+$(window).scroll(function(){
+var bn = $('#bn');
+	if($(window).scrollTop() > 30) {
+    bn.css({position:'fixed', top:'10px', right:'8px'});
+    }
+    else{
+    bn.css('position', 'static');
+    }
+});
 </script>
 @endsection

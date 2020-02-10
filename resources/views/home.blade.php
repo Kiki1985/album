@@ -1,9 +1,12 @@
 @extends('layout')
 @section('content')
-<div style="float: left"><h2>Albums</h2></div>
-<div style="float: right"><p>User {{Auth::user()->name}}</p></div>
+<p><b><i>Albums</i></b> <span style="float: right">User {{Auth::user()->name}}</span></p>
+<div id="bn" style="float: right; margin-bottom: 10px">
+<a href="/logout"><button>Logout</button></a>
+</div>
+<hr style="clear: both;">
+<div>
 
-<div style="clear: both;">
 <form method="POST" action="/albums">
 @csrf
 	<input type="text" name="name" placeholder="The Album Name" required>
@@ -16,7 +19,7 @@
 	<th>The album name</th>
     <th>Number of stickers</th>
 </tr>
-<a href="/logout"><button>Logout</button></a>
+
 @foreach($albums as $album)
 <tr>
 	<td><a href="/albums/{{$album->id}}">{{$album->name}}</a></td>

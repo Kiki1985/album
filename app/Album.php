@@ -18,4 +18,14 @@ class Album extends Model
     {
     	return $this->belongsTo(User::class);
     }
+
+    public function addSticker($i)
+    {
+        return Sticker::create([
+                'album_id' => $this->id,
+                'sticker_id' => $i
+        ]);
+    }
+
+
 }
