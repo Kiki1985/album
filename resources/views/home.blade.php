@@ -6,20 +6,17 @@
 </div>
 <hr style="clear: both;">
 <div>
-
 <form method="POST" action="/albums">
 @csrf
 	<input type="text" name="name" placeholder="The Album Name" required>
 	<input type="text" name="numStickers" placeholder="Number Of Stickers" required>
 	<button>Submit</button>
 </form>
-
 <table>
 <tr>
 	<th>The album name</th>
     <th>Number of stickers</th>
 </tr>
-
 @foreach($albums as $album)
 <tr>
 	<td><a href="/albums/{{$album->id}}">{{$album->name}}</a></td>

@@ -14,5 +14,3 @@ Route::get('/albums', 'AlbumsController@index');
 Route::post('/albums', 'AlbumsController@store');
 Route::get('/albums/{album}', 'AlbumsController@show');
 Route::post('/albums/{album}/stickers', 'StickersController@store');
-
-

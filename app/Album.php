@@ -11,12 +11,12 @@ class Album extends Model
 
     public function stickers()
     {
-    	return $this->hasMany(Sticker::class);
+        return $this->hasMany(Sticker::class);
     }
 
     public function user()
     {
-    	return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class);
     }
 
     public function addSticker($i)
@@ -26,6 +26,4 @@ class Album extends Model
                 'sticker_id' => $i
         ]);
     }
-
-
 }
